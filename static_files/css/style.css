@@ -8,12 +8,7 @@ body{
     min-height: 100%;
 }
 
-.container-fluid{
-    flex: 1;
-}
-
 footer{
-    position: relative;
     text-align: center;
     padding: 10px 10px;
     background-color: #83C5BE;
@@ -31,7 +26,6 @@ footer{
 
 .content{
     background-color: #EDF6F9;
-    height: 100vh;
 }
 
 .nav-item a{
@@ -57,7 +51,16 @@ footer{
     font-size: 1.2rem;
 }
 
-.btn-pagina-principal:hover{
+.btn-pagina-principal:hover, .btn-listagem:hover{
     background-color: #e29578d4;
+    color: #EDF6F9;
+}
+
+h1{
+    color: #006D77;
+}
+
+.btn-listagem{
+    background-color: #E29578;
     color: #EDF6F9;
 }
