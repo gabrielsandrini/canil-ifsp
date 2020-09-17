@@ -34,7 +34,7 @@ class Veterinario(models.Model):
     crmv = models.CharField(max_length=45)
 
     def __str__(self):
-        return self.funcionario.pessoa.nome + ' - ' + self.crmv
+        return self.funcionario.pessoa.nome + ' - ' + self.funcionario.pessoa.cpf
 
     class Meta:
         verbose_name_plural = 'Veterinarios'

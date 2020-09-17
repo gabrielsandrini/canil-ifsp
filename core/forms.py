@@ -19,4 +19,4 @@ class FormPessoa(ModelForm):
 class FormVeterinario(ModelForm):
     class Meta:
         model = Veterinario
-        fields = '__all__'
+        fields = ('crmv', )
