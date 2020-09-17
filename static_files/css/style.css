@@ -26,6 +26,7 @@ footer{
 
 .content{
     background-color: #EDF6F9;
+    min-height: 100vh;
 }
 
 .nav-item a{
@@ -38,11 +39,18 @@ footer{
     color: #FFDDD2;
 }
 
+.navbar-toggle{
+    color: #EDF6F9;
+}
+
+.navbar-toggle:hover{
+    color: #FFDDD2;
+}
+
 .btn-pagina-principal{
     height: 150px;
     width: 250px;
-    margin-top: 15px;
-    margin-right: 15px;
+    margin: 15px;
     background-color: #E29578;
     color: #EDF6F9;
     display: flex;
@@ -60,7 +68,18 @@ h1{
     color: #006D77;
 }
 
-.btn-listagem{
+.btn-listagem, .btn-login, .btn-registrar{
     background-color: #E29578;
     color: #EDF6F9;
+}
+
+.btn-listagem:hover, .btn-login:hover, .btn-registrar:hover{
+    background-color: #e29578d4;
+    color: #EDF6F9;
+}
+
+@media(min-width: 992px){
+    .navbar-toggle{
+        display: none;
+    }
 }
