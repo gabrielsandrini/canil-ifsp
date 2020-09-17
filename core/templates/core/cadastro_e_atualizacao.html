@@ -24,7 +24,10 @@
             <div class="col-12">
                 <form method="post">
                     {% csrf_token %}
-                    {{ form|crispy }}
+                    {% for form in forms %}
+                        {{ form|crispy }}
+                        <hr/>
+                    {% endfor %}
                     <div class="form-row d-flex justify-content-end">
                         <button type="reset" class="btn btn-danger">
                             <i class="fa fa-exclamation" aria-hidden="true"></i> &nbsp Limpar Campos

@@ -28,7 +28,7 @@
         <a href="{% url 'index' %}" class="navbar-brand">
             <img src="{% static 'images/logo.png' %}" height="60">
         </a>
-
+        <span style="margin: 0 auto">Bem vindo, {{ user.get_username }}</span>
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <a href="{% url 'logout' %}" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair</a>
