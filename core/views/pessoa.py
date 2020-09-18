@@ -20,6 +20,6 @@ def cadastro_pessoa(request):
 
 @login_required()
 def listagem_pessoa(request):
-    pessoa = Pessoa.objects.all()
-    context = {'dados': pessoa}
+    pessoas = Pessoa.objects.all()
+    context = {'dados': pessoas}
     return render(request, 'core/teste/listagem_teste.html', context)

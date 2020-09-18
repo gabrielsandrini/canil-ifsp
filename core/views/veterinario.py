@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.db import transaction
 from core.forms import FormPessoa, FormVeterinario, UserCreateForm
-from core.models import Funcionario
+from core.models import Funcionario, Veterinario
 
 
 @login_required()
@@ -30,3 +30,10 @@ def cadastro_veterinario(request):
         return redirect('index')
 
     return render(request, 'core/cadastro_e_atualizacao.html', context)
+
+
+@login_required()
+def listagem_veterinario(request):
+    veterinarios = Veterinario.objects.all()
+    context = {'dados': veterinarios}
+    return render(request, 'core/teste/listagem_teste.html', context)

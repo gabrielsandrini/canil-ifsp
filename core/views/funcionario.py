@@ -21,3 +21,10 @@ def cadastro_funcionario(request):
         return redirect('index')
 
     return render(request, 'core/cadastro_e_atualizacao.html', context)
+
+
+@login_required()
+def listagem_funcionario(request):
+    funcionarios = Funcionario.objects.all()
+    context = {'dados': funcionarios}
+    return render(request, 'core/teste/listagem_teste.html', context)
