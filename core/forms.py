@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from core.models import Pessoa, Funcionario, Veterinario
+from core.models import Pessoa, Veterinario
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 

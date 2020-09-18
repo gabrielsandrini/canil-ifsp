@@ -2,6 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from core.forms import FormPessoa, FormVeterinario, UserCreateForm
 from core.models import Funcionario, Veterinario
+from django.db import transaction
+
 # Create your views here.
 
 
@@ -34,6 +36,7 @@ def deleta_teste(request):
 
 
 @login_required()
+@transaction.atomic()
 def cadastro_funcionario(request):
     form_pessoa = FormPessoa(request.POST or None)
     form_credenciais = UserCreateForm(request.POST or None)
@@ -51,6 +54,7 @@ def cadastro_funcionario(request):
 
 
 @login_required()
+@transaction.atomic()
 def cadastro_veterinario(request):
     form_pessoa = FormPessoa(request.POST or None)
     form_credenciais = UserCreateForm(request.POST or None)
