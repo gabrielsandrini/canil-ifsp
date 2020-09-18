@@ -37,6 +37,19 @@ def deleta_teste(request):
 
 @login_required()
 @transaction.atomic()
+def cadastro_pessoa(request):
+    form_pessoa = FormPessoa(request.POST or None)
+
+    context = {'forms': [form_pessoa], 'action': 'Registrar', 'model': 'Funcionário' }
+
+    if form_pessoa.is_valid():
+        pessoa = form_pessoa.save()
+        return redirect('index')
+
+    return render(request, 'core/cadastro_e_atualizacao.html', context)
+
+@login_required()
+@transaction.atomic()
 def cadastro_funcionario(request):
     form_pessoa = FormPessoa(request.POST or None)
     form_credenciais = UserCreateForm(request.POST or None)
