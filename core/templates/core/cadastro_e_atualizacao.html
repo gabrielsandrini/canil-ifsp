@@ -17,7 +17,7 @@
                 <h1>{{ action }} {{ model }}</h1>
             </div>
             <div class="col-4">
-                <a href="#" class="btn btn-listagem">Listagem {{ model }}</a>
+                <a href="{{ url_listagem }}" class="btn btn-listagem">Listagem {{ model }}</a>
             </div>
         </div>
         <div class="row">
@@ -30,11 +30,11 @@
                     {% endfor %}
                     <div class="form-row d-flex justify-content-end">
                         <button type="reset" class="btn btn-danger">
-                            <i class="fa fa-exclamation" aria-hidden="true"></i> &nbsp Limpar Campos
+                            Limpar Campos
                         </button>
                         &nbsp
                         <button type="submit" class="btn btn-success">
-                            <i class="fa fa-check" aria-hidden="true"></i> &nbsp {{ action }} {{ model }}
+                            {{ action }} {{ model }}
                         </button>
                     </div>
                 </form>

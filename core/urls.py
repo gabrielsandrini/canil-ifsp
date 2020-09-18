@@ -18,4 +18,5 @@ urlpatterns = [
     # Veterinário
     path('cadastro_veterinario/', cadastro_veterinario, name='url_cadastro_veterinario'),
     path('listagem_veterinario/', listagem_veterinario, name='url_listagem_veterinario'),
+
 ]

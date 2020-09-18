@@ -12,7 +12,8 @@ def cadastro_veterinario(request):
     form_credenciais = UserCreateForm(request.POST or None)
     form_veterinario = FormVeterinario(request.POST or None)
 
-    context = {'forms': [form_pessoa, form_credenciais, form_veterinario], 'action': 'Registrar', 'model': 'Veterinário' }
+    context = {'forms': [form_pessoa, form_credenciais, form_veterinario], 'action': 'Registrar',
+               'model': 'Veterinário', 'url_listagem': '/listagem_veterinario'}
 
     if form_pessoa.is_valid() and form_credenciais.is_valid() and form_veterinario.is_valid():
 
@@ -36,4 +37,4 @@ def cadastro_veterinario(request):
 def listagem_veterinario(request):
     veterinarios = Veterinario.objects.all()
     context = {'dados': veterinarios}
-    return render(request, 'core/teste/listagem_teste.html', context)
+    return render(request, 'core/veterinario/listagem_veterinario.html', context)

@@ -28,8 +28,10 @@
         <a href="{% url 'index' %}" class="navbar-brand">
             <img src="{% static 'images/logo.png' %}" height="60">
         </a>
-        <span style="margin: 0 auto">Bem vindo, {{ user.get_username }}</span>
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto d-inline">
+            <li class="nav-item">
+                <a class="nav-link">Bem vindo(a), {{ user.get_username }}</a>
+            </li>
             <li class="nav-item">
                 <a href="{% url 'logout' %}" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair</a>
             </li>
@@ -52,16 +54,13 @@
                             <a href="#"><i class="fa fa-stethoscope" aria-hidden="true"></i> Consultas</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i> Funcionários</a>
+                            <a href="{% url 'url_listagem_funcionario' %}"><i class="fa fa-user-plus" aria-hidden="true"></i> Funcionários</a>
                         </li>
                         <li class="nav-item">
                             <a href="#"><i class="fa fa-medkit" aria-hidden="true"></i> Vacinas</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#"><i class="fa fa-user-md" aria-hidden="true"></i> Veterinários</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#"><i class="fa fa-user-md" aria-hidden="true"></i> Testes</a>
+                            <a href="{% url 'url_listagem_veterinario' %}"><i class="fa fa-user-md" aria-hidden="true"></i> Veterinários</a>
                         </li>
                     </ul>
                 </div>

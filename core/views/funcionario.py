@@ -11,7 +11,8 @@ def cadastro_funcionario(request):
     form_pessoa = FormPessoa(request.POST or None)
     form_credenciais = UserCreateForm(request.POST or None)
 
-    context = {'forms': [form_pessoa, form_credenciais], 'action': 'Registrar', 'model': 'Funcionário' }
+    context = {'forms': [form_pessoa, form_credenciais], 'action': 'Registrar', 'model': 'Funcionário',
+               'url_listagem': '/listagem_funcionario'}
 
     if form_pessoa.is_valid() and form_credenciais.is_valid():
         pessoa = form_pessoa.save()
@@ -27,4 +28,5 @@ def cadastro_funcionario(request):
 def listagem_funcionario(request):
     funcionarios = Funcionario.objects.all()
     context = {'dados': funcionarios}
-    return render(request, 'core/teste/listagem_teste.html', context)
+    return render(request, 'core/funcionario/listagem_funcionario.html', context)
+
