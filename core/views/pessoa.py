@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.db import transaction
 from core.forms import FormPessoa
-
+from core.models import Pessoa
 
 @login_required()
 @transaction.atomic()
@@ -16,3 +16,10 @@ def cadastro_pessoa(request):
         return redirect('index')
 
     return render(request, 'core/cadastro_e_atualizacao.html', context)
+
+
+@login_required()
+def listagem_pessoa(request):
+    pessoa = Pessoa.objects.all()
+    context = {'dados': pessoa}
+    return render(request, 'core/teste/listagem_teste.html', context)

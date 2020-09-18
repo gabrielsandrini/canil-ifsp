@@ -17,7 +17,7 @@
                 <h1>Listagem {{ model }}</h1>
             </div>
             <div class="col-4">
-                <a href="{% url 'registro_teste' %}" class="btn btn-registrar">Registrar {{ model }}</a>
+                <a href="#" class="btn btn-registrar">Registrar {{ model }}</a>
             </div>
         </div>
         <div class="row">
@@ -43,8 +43,8 @@
                             <td>teste.teste4</td>
                             <td>teste.teste5</td>
                             <td>
-                                <a class="btn btn-warning" href="{% url 'atualizacao_teste' %}">Atualizar</a>
-                                <a class="btn btn-danger" href="{% url 'deleta_teste' %}">Deletar</a>
+                                <a class="btn btn-warning" href="#">Atualizar</a>
+                                <a class="btn btn-danger" href="#">Deletar</a>
                             </td>
                         </tr>
                         {% for teste in testes%}
