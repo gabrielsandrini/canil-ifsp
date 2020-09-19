@@ -12,7 +12,7 @@ def cadastro_pessoa(request):
     context = {'forms': [form_pessoa], 'action': 'Registrar', 'model': 'Pessoa', 'url_listagem': '/listagem_pessoa' }
 
     if form_pessoa.is_valid():
-        pessoa = form_pessoa.save()
+        form_pessoa.save()
         return redirect('index')
 
     return render(request, 'core/cadastro_e_atualizacao.html', context)
