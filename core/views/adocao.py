@@ -28,3 +28,17 @@ def listagem_adocao(request):
     context = {'dados': adocoes}
     return render(request, 'core/adocao/listagem_adocao.html', context)
 
+
+@login_required()
+def atualiza_adocao(request, adocao_id):
+    adocao = Adocao.objects.get(id=adocao_id)
+    form_adocao = FormAdocao(request.POST or None, instance=adocao)
+
+    context = {'forms': [form_adocao], 'action': 'Atualizar', 'model': 'Adoção',
+               'url_listagem': url_listagem}
+
+    if form_adocao.is_valid():
+        form_adocao.save()
+        return redirect(url_listagem)
+
+    return render(request, 'core/cadastro_e_atualizacao.html', context)
