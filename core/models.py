@@ -22,7 +22,7 @@ class Pessoa(models.Model):
 
 class Funcionario(models.Model):
     credenciais = models.OneToOneField(User, on_delete=models.CASCADE)
-    pessoa = models.OneToOneField(Pessoa, on_delete=models.DO_NOTHING)
+    pessoa = models.OneToOneField(Pessoa, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.pessoa.nome + ' - ' + self.pessoa.cpf
@@ -32,11 +32,12 @@ class Funcionario(models.Model):
 
 
 class Veterinario(models.Model):
-    funcionario = models.OneToOneField(Funcionario, on_delete=models.CASCADE)
+    credenciais = models.OneToOneField(User, on_delete=models.CASCADE)
+    pessoa = models.OneToOneField(Pessoa, on_delete=models.CASCADE)
     crmv = models.CharField(max_length=45, unique=True)
 
     def __str__(self):
-        return self.funcionario.pessoa.nome + ' - ' + self.funcionario.pessoa.cpf
+        return self.pessoa.nome + ' - ' + self.pessoa.cpf
 
     class Meta:
         verbose_name_plural = 'Veterinarios'
@@ -60,12 +61,13 @@ class Cachorro(models.Model):
 
 
 class Adocao(models.Model):
-    cachorro = models.ForeignKey(Cachorro, on_delete=models.CASCADE, null=True)
+    cachorro = models.ForeignKey(Cachorro, on_delete=models.CASCADE)
     guardiao = models.ForeignKey(Pessoa, on_delete=models.SET_NULL, null=True)
     data = models.DateField()
 
     def __str__(self):
-        return self.guardiao + ' - ' + self.cachorro
+        guardiao = str(self.guardiao) + ' - ' if self.guardiao else ""
+        return guardiao + str(self.cachorro)
 
     class Meta:
         verbose_name_plural = 'Adocoes'
@@ -82,12 +84,13 @@ class Vacina(models.Model):
 
 
 class Vacinacao(models.Model):
-    vacina = models.ForeignKey(Vacina, on_delete=models.SET_NULL, null=True)
+    vacina = models.ForeignKey(Vacina, on_delete=models.DO_NOTHING, null=True)
     cachorro = models.ForeignKey(Cachorro, on_delete=models.CASCADE)
     data = models.DateField()
 
     def __str__(self):
-        return self.cachorro + ' - ' + self.vacina
+        vacina = ' - ' + self.vacina.descricao if self.vacina else " "
+        return str(self.cachorro) + vacina + " - " + str(self.data)
 
     class Meta:
         verbose_name_plural = 'Vacinacoes'
@@ -98,21 +101,21 @@ class Medicacao(models.Model):
     posologia = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.cachorro + ' - ' + self.medicamento
+        return self.nome_medicamento + ' - ' + self.posologia
 
     class Meta:
         verbose_name_plural = 'Medicacoes'
 
 
 class Consulta(models.Model):
-    veterinario = models.ForeignKey(Veterinario, on_delete=models.DO_NOTHING)
+    veterinario = models.ForeignKey(Veterinario, on_delete=models.SET_NULL, null=True)
     cachorro = models.ForeignKey(Cachorro, on_delete=models.CASCADE)
     data = models.DateField()
     medicacao = models.ManyToManyField(Medicacao, blank=True)
     observacoes = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return self.data + ' - ' + self.cachorro
+        return str(self.cachorro) + ' - ' + str(self.data)
 
     class Meta:
         verbose_name_plural = 'Consultas'
