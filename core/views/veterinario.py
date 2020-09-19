@@ -23,11 +23,9 @@ def cadastro_veterinario(request):
 
         credenciais = form_credenciais.save()
 
-        funcionario = Funcionario(pessoa=pessoa, credenciais=credenciais)
-        funcionario.save()
+        crmv = form_veterinario.data['crmv']
 
-        veterinario = form_veterinario.save(False)
-        veterinario.funcionario = funcionario
+        veterinario = Veterinario(pessoa=pessoa, credenciais=credenciais, crmv=crmv)
         veterinario.save()
 
         return redirect(url_listagem)

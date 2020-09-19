@@ -34,12 +34,12 @@
                     <tbody>
                         {% for veterinario in dados %}
                             <tr>
-                                <td>{{ veterinario.funcionario.pessoa.nome }}</td>
-                                <td>{{ veterinario.funcionario.pessoa.cpf }}</td>
-                                <td>{{ veterinario.funcionario.pessoa.email }}</td>
-                                <td>{{ veterinario.funcionario.pessoa.telefone }}</td>
-                                <td>{{ veterinario.funcionario.pessoa.celular }}</td>
-                                <td>{{ veterinario.funcionario.credenciais }}</td>
+                                <td>{{ veterinario.pessoa.nome }}</td>
+                                <td>{{ veterinario.pessoa.cpf }}</td>
+                                <td>{{ veterinario.pessoa.email }}</td>
+                                <td>{{ veterinario.pessoa.telefone }}</td>
+                                <td>{{ veterinario.pessoa.celular }}</td>
+                                <td>{{ veterinario.credenciais }}</td>
                                 <td>{{ veterinario.crmv }}</td>
                                 <td>
                                     <a href="#" class="btn btn-warning">Editar</a>
