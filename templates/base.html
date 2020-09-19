@@ -45,19 +45,22 @@
                 <!--<div>-->
                     <ul class="navbar-nav flex-column">
                         <li class="nav-item">
-                            <a href="#"><i class="fa fa-heart" aria-hidden="true"></i> Adoções</a>
+                            <a href="{% url 'url_listagem_adocao' %}"><i class="fa fa-heart" aria-hidden="true"></i> Adoções</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#"><i class="fa fa-plus" aria-hidden="true"></i> Cachorros</a>
+                            <a href="{% url 'url_listagem_cachorro' %}"><i class="fa fa-paw" aria-hidden="true"></i> Cachorros</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#"><i class="fa fa-stethoscope" aria-hidden="true"></i> Consultas</a>
+                            <a href="{% url 'url_listagem_consulta' %}"><i class="fa fa-stethoscope" aria-hidden="true"></i> Consultas</a>
                         </li>
                         <li class="nav-item">
                             <a href="{% url 'url_listagem_funcionario' %}"><i class="fa fa-user-plus" aria-hidden="true"></i> Funcionários</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#"><i class="fa fa-medkit" aria-hidden="true"></i> Vacinas</a>
+                            <a href="{% url 'url_listagem_pessoa' %}"><i class="fa fa-users" aria-hidden="true"></i> Guardiões</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{% url 'url_listagem_vacinacao' %}"><i class="fa fa-medkit" aria-hidden="true"></i> Vacinação</a>
                         </li>
                         <li class="nav-item">
                             <a href="{% url 'url_listagem_veterinario' %}"><i class="fa fa-user-md" aria-hidden="true"></i> Veterinários</a>
