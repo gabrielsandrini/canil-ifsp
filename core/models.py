@@ -52,7 +52,8 @@ class Cachorro(models.Model):
     caracteristicas_extras = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return self.nome + ' - ' + str(self.id)
+        raca = self.raca + ' 'if self.raca else ''
+        return self.nome + ' - ' + raca + str(self.cor)
 
     class Meta:
         verbose_name_plural = 'Cachorros'
@@ -71,10 +72,10 @@ class Adocao(models.Model):
 
 
 class Vacina(models.Model):
-    descricao = models.CharField(max_length=60)
+    descricao = models.CharField(max_length=60, unique=True)
 
     def __str__(self):
-        return self.descricao + ' - ' + self.id
+        return self.descricao
 
     class Meta:
         verbose_name_plural = 'Vacinas'

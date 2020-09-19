@@ -1,5 +1,6 @@
 from django.forms import ModelForm
-from core.models import Pessoa, Veterinario, Cachorro, Consulta
+from core.models import (Pessoa, Veterinario, Cachorro,
+                         Consulta, Vacina, Vacinacao)
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -31,4 +32,16 @@ class FormCachorro(ModelForm):
 class FormConsultaVeterinario(ModelForm):
     class Meta:
         model = Consulta
+        fields = '__all__'
+
+
+class FormVacina(ModelForm):
+    class Meta:
+        model = Vacina
+        fields = '__all__'
+
+
+class FormVacinacao(ModelForm):
+    class Meta:
+        model = Vacinacao
         fields = '__all__'
