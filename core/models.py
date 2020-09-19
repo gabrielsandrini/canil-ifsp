@@ -60,8 +60,8 @@ class Cachorro(models.Model):
 
 
 class Adocao(models.Model):
-    guardiao = models.ForeignKey(Cachorro, on_delete=models.SET_NULL, null=True)
-    cachorro = models.ForeignKey(Pessoa, on_delete=models.CASCADE, null=True)
+    cachorro = models.ForeignKey(Cachorro, on_delete=models.CASCADE, null=True)
+    guardiao = models.ForeignKey(Pessoa, on_delete=models.SET_NULL, null=True)
     data = models.DateField()
 
     def __str__(self):

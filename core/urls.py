@@ -29,9 +29,9 @@ urlpatterns = [
     path('cadastro_cachorro/', cadastro_cachorro, name='url_cadastro_cachorro'),
     path('listagem_cachorro/', listagem_cachorro, name='url_listagem_cachorro'),
 
-    # Adoção - ñ implementado ainda
-    # path('cadastro_adocao/', cadastro_adocao, name='url_cadastro_adocao'),
-    # path('listagem_adocao/', listagem_adocao, name='url_listagem_adocao'),
+    # Adoção
+    path('cadastro_adocao/', cadastro_adocao, name='url_cadastro_adocao'),
+    path('listagem_adocao/', listagem_adocao, name='url_listagem_adocao'),
 
     # Consulta
     path('cadastro_consulta/', cadastro_consulta_veterinario, name='url_cadastro_consulta'),
