@@ -9,7 +9,7 @@ from core.models import Pessoa
 def cadastro_pessoa(request):
     form_pessoa = FormPessoa(request.POST or None)
 
-    context = {'forms': [form_pessoa], 'action': 'Registrar', 'model': 'Pessoa' }
+    context = {'forms': [form_pessoa], 'action': 'Registrar', 'model': 'Pessoa', 'url_listagem': '/listagem_pessoa' }
 
     if form_pessoa.is_valid():
         form_pessoa.save()
@@ -22,4 +22,4 @@ def cadastro_pessoa(request):
 def listagem_pessoa(request):
     pessoas = Pessoa.objects.all()
     context = {'dados': pessoas}
-    return render(request, 'core/teste/listagem_teste.html', context)
+    return render(request, 'core/pessoa/listagem_pessoa.html', context)

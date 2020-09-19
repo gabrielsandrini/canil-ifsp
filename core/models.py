@@ -48,7 +48,7 @@ class Cachorro(models.Model):
     cor = models.CharField(max_length=80)
     porte = models.CharField(max_length=45)
     data_nascimento = models.DateField(blank=True, null=True)
-    pedigree = models.CharField(max_length=45, unique=True)
+    pedigree = models.CharField(max_length=45, unique=True, blank=True, null=True)
     caracteristicas_extras = models.TextField(blank=True, null=True)
 
     def __str__(self):

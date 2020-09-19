@@ -23,4 +23,4 @@ def cadastro_cachorro(request):
 def listagem_cachorro(request):
     cachorros = Cachorro.objects.all()
     context = {'dados': cachorros}
-    return render(request, 'core/teste/listagem_teste.html', context)
+    return render(request, 'core/cachorro/listagem_cachorro.html', context)
