@@ -4,6 +4,8 @@ from django.db import transaction
 from core.forms import FormPessoa, FormVeterinario, UserCreateForm
 from core.models import Funcionario, Veterinario
 
+url_listagem = '/listagem_veterinario'
+
 
 @login_required()
 @transaction.atomic()
@@ -13,7 +15,7 @@ def cadastro_veterinario(request):
     form_veterinario = FormVeterinario(request.POST or None)
 
     context = {'forms': [form_pessoa, form_credenciais, form_veterinario], 'action': 'Registrar',
-               'model': 'Veterinário', 'url_listagem': '/listagem_veterinario'}
+               'model': 'Veterinário', 'url_listagem': url_listagem}
 
     if form_pessoa.is_valid() and form_credenciais.is_valid() and form_veterinario.is_valid():
 
@@ -28,7 +30,7 @@ def cadastro_veterinario(request):
         veterinario.funcionario = funcionario
         veterinario.save()
 
-        return redirect('index')
+        return redirect(url_listagem)
 
     return render(request, 'core/cadastro_e_atualizacao.html', context)
 

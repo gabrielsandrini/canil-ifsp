@@ -4,17 +4,20 @@ from django.db import transaction
 from core.forms import FormCachorro
 from core.models import Cachorro
 
+url_listagem = '/listagem_cachorro'
+
 
 @login_required()
 @transaction.atomic()
 def cadastro_cachorro(request):
     form_cachorro = FormCachorro(request.POST or None)
 
-    context = {'forms': [form_cachorro], 'action': 'Registrar', 'model': 'Cachorro'}
+    context = {'forms': [form_cachorro], 'action': 'Registrar', 'model': 'Cachorro',
+               'url_listagem': url_listagem}
 
     if form_cachorro.is_valid():
         form_cachorro.save()
-        return redirect('index')
+        return redirect(url_listagem)
 
     return render(request, 'core/cadastro_e_atualizacao.html', context)
 

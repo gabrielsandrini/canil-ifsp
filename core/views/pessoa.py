@@ -4,16 +4,19 @@ from django.db import transaction
 from core.forms import FormPessoa
 from core.models import Pessoa
 
+url_listagem = '/listagem_pessoa'
+
+
 @login_required()
 @transaction.atomic()
 def cadastro_pessoa(request):
     form_pessoa = FormPessoa(request.POST or None)
 
-    context = {'forms': [form_pessoa], 'action': 'Registrar', 'model': 'Pessoa', 'url_listagem': '/listagem_pessoa' }
+    context = {'forms': [form_pessoa], 'action': 'Registrar', 'model': 'Pessoa', 'url_listagem': url_listagem}
 
     if form_pessoa.is_valid():
         form_pessoa.save()
-        return redirect('index')
+        return redirect(url_listagem)
 
     return render(request, 'core/cadastro_e_atualizacao.html', context)
 

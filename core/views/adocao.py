@@ -4,13 +4,13 @@ from django.db import transaction
 from core.models import Adocao
 from core.forms import FormAdocao
 
+url_listagem = '/listagem_adocao'
+
 
 @login_required()
 @transaction.atomic()
 def cadastro_adocao(request):
     form_adocao = FormAdocao(request.POST or None)
-
-    url_listagem = '/listagem_adocao'
 
     context = {'forms': [form_adocao], 'action': 'Registrar', 'model': 'Adoção',
                'url_listagem': url_listagem}
