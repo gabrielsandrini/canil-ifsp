@@ -52,7 +52,7 @@ class Cachorro(models.Model):
     caracteristicas_extras = models.TextField(blank=True, null=True)
 
     def __str__(self):
-        return self.nome + self.raca + ' - ' + self.pedigree
+        return self.nome + ' - ' + str(self.id)
 
     class Meta:
         verbose_name_plural = 'Cachorros'
