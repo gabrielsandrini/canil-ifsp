@@ -3,7 +3,7 @@ from core.views.index import index
 from core.views.pessoa import cadastro_pessoa, listagem_pessoa
 from core.views.funcionario import cadastro_funcionario, listagem_funcionario
 from core.views.veterinario import cadastro_veterinario, listagem_veterinario
-from core.views.cachorro import cadastro_cachorro, listagem_cachorro
+from core.views.cachorro import cadastro_cachorro, listagem_cachorro, atualiza_cachorro
 from core.views.adocao import cadastro_adocao, listagem_adocao
 from core.views.consulta_veterinario import cadastro_consulta_veterinario, listagem_consulta_veterinario
 from core.views.vacina import cadastro_vacina, listagem_vacina
@@ -28,6 +28,7 @@ urlpatterns = [
     # Cachorro
     path('cadastro_cachorro/', cadastro_cachorro, name='url_cadastro_cachorro'),
     path('listagem_cachorro/', listagem_cachorro, name='url_listagem_cachorro'),
+    path('atualiza_cachorro/<int:cachorro_id>', atualiza_cachorro, name='url_atualiza_cachorro'),
 
     # Adoção
     path('cadastro_adocao/', cadastro_adocao, name='url_cadastro_adocao'),
