@@ -51,3 +51,34 @@ def listagem_veterinario(request):
                }
 
     return render(request, 'core/veterinario/listagem_veterinario.html', context)
+
+
+@login_required()
+def atualiza_veterinario(request, veterinario_id):
+    veterinario = Veterinario.objects.get(id=veterinario_id)
+    form_pessoa = FormPessoa(request.POST or None, instance=veterinario.pessoa)
+    form_credenciais = UserCreateForm(request.POST or None, instance=veterinario.credenciais)
+    form_veterinario = FormVeterinario(request.POST or None, instance=veterinario)
+
+    context = {'forms': [form_pessoa, form_credenciais, form_veterinario],
+               'form_action': 'Atualizar',
+               'title_page': 'Atualização',
+               'btn_action': 'Listagem',
+               'model': model,
+               'url': url_listagem}
+
+    if form_pessoa.is_valid() and form_credenciais.is_valid() and form_veterinario.is_valid():
+        form_pessoa.save()
+        form_credenciais.save()
+        form_veterinario.save()
+        return redirect(url_listagem)
+
+    return render(request, 'core/cadastro_e_atualizacao.html', context)
+
+
+@login_required()
+def deleta_veterinario(_, veterinario_id):
+    veterinario = Veterinario.objects.get(id=veterinario_id)
+    veterinario.credenciais.delete()
+    veterinario.delete()
+    return redirect(url_listagem)

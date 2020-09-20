@@ -70,5 +70,6 @@ def atualiza_funcionario(request, funcionario_id):
 @login_required()
 def deleta_funcionario(_, funcionario_id):
     funcionario = Funcionario.objects.get(id=funcionario_id)
+    funcionario.credenciais.delete()
     funcionario.delete()
     return redirect(url_listagem)

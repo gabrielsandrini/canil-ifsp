@@ -29,8 +29,10 @@
                             <td>{{ veterinario.credenciais }}</td>
                             <td>{{ veterinario.crmv }}</td>
                             <td>
-                                <a href="#" class="btn btn-warning">Editar</a>
-                                <a href="#" class="btn btn-danger">Excluir</a>
+                                <a href="{% url 'url_atualiza_veterinario' veterinario.id %}" class="btn btn-warning">Editar</a>
+                                <a href='#'
+                                   onclick='confirmarDelete("{{ veterinario }}", "{% url 'url_deleta_veterinario' veterinario.id %}")'
+                                   class="btn btn-danger">Excluir</a>
                             </td>
                         </tr>
                     {% endfor %}
