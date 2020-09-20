@@ -5,6 +5,8 @@ from core.forms import FormPessoa, UserCreateForm
 from core.models import Funcionario
 
 url_listagem = '/listagem_funcionario'
+url_cadastro = '/cadastro_funcionario'
+model = 'Funcionário'
 
 
 @login_required()
@@ -13,8 +15,12 @@ def cadastro_funcionario(request):
     form_pessoa = FormPessoa(request.POST or None)
     form_credenciais = UserCreateForm(request.POST or None)
 
-    context = {'forms': [form_pessoa, form_credenciais], 'action': 'Registrar', 'model': 'Funcionário',
-               'url_listagem': url_listagem}
+    context = {'forms': [form_pessoa, form_credenciais],
+               'form_action': 'Registrar',
+               'title_page': 'Registro',
+               'btn_action': 'Listagem',
+               'model': model,
+               'url': url_listagem}
 
     if form_pessoa.is_valid() and form_credenciais.is_valid():
         pessoa = form_pessoa.save()
@@ -29,6 +35,13 @@ def cadastro_funcionario(request):
 @login_required()
 def listagem_funcionario(request):
     funcionarios = Funcionario.objects.all()
-    context = {'dados': funcionarios}
+
+    context = {'dados': funcionarios,
+               'title_page': 'Listagem',
+               'btn_action': 'Registrar',
+               'model': model,
+               'url': url_cadastro
+               }
+
     return render(request, 'core/funcionario/listagem_funcionario.html', context)
 

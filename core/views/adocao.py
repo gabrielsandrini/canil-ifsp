@@ -5,6 +5,8 @@ from core.models import Adocao
 from core.forms import FormAdocao
 
 url_listagem = '/listagem_adocao'
+url_cadastro = '/cadastro_adocao'
+model = 'Adoção'
 
 
 @login_required()
@@ -12,8 +14,12 @@ url_listagem = '/listagem_adocao'
 def cadastro_adocao(request):
     form_adocao = FormAdocao(request.POST or None)
 
-    context = {'forms': [form_adocao], 'action': 'Registrar', 'model': 'Adoção',
-               'url_listagem': url_listagem}
+    context = {'forms': [form_adocao],
+               'form_action': 'Registrar',
+               'title_page': 'Registro',
+               'btn_action': 'Listagem',
+               'model': model,
+               'url': url_listagem}
 
     if form_adocao.is_valid():
         form_adocao.save()
@@ -25,7 +31,14 @@ def cadastro_adocao(request):
 @login_required()
 def listagem_adocao(request):
     adocoes = Adocao.objects.all()
-    context = {'dados': adocoes}
+
+    context = {'dados': adocoes,
+               'title_page': 'Listagem',
+               'btn_action': 'Registrar',
+               'model': model,
+               'url': url_cadastro
+               }
+
     return render(request, 'core/adocao/listagem_adocao.html', context)
 
 
@@ -34,8 +47,12 @@ def atualiza_adocao(request, adocao_id):
     adocao = Adocao.objects.get(id=adocao_id)
     form_adocao = FormAdocao(request.POST or None, instance=adocao)
 
-    context = {'forms': [form_adocao], 'action': 'Atualizar', 'model': 'Adoção',
-               'url_listagem': url_listagem}
+    context = {'forms': [form_adocao],
+               'form_action': 'Atualizar',
+               'title_page': 'Atualização',
+               'btn_action': 'Listagem',
+               'model': model,
+               'url': url_listagem}
 
     if form_adocao.is_valid():
         form_adocao.save()

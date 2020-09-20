@@ -5,6 +5,8 @@ from core.forms import FormPessoa
 from core.models import Pessoa
 
 url_listagem = '/listagem_pessoa'
+url_cadastro = '/cadastro_pessoa'
+model = 'Guardião'
 
 
 @login_required()
@@ -12,7 +14,12 @@ url_listagem = '/listagem_pessoa'
 def cadastro_pessoa(request):
     form_pessoa = FormPessoa(request.POST or None)
 
-    context = {'forms': [form_pessoa], 'action': 'Registrar', 'model': 'Pessoa', 'url_listagem': url_listagem}
+    context = {'forms': [form_pessoa],
+               'form_action': 'Registrar',
+               'title_page': 'Registro',
+               'btn_action': 'Listagem',
+               'model': model,
+               'url': url_listagem}
 
     if form_pessoa.is_valid():
         form_pessoa.save()
@@ -24,5 +31,12 @@ def cadastro_pessoa(request):
 @login_required()
 def listagem_pessoa(request):
     pessoas = Pessoa.objects.all()
-    context = {'dados': pessoas}
+
+    context = {'dados': pessoas,
+               'title_page': 'Listagem',
+               'btn_action': 'Registrar',
+               'model': model,
+               'url': url_cadastro
+               }
+
     return render(request, 'core/pessoa/listagem_pessoa.html', context)

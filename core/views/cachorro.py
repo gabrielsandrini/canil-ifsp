@@ -5,6 +5,8 @@ from core.forms import FormCachorro
 from core.models import Cachorro
 
 url_listagem = '/listagem_cachorro'
+url_cadastro = '/cadastro_cachorro'
+model = 'Cachorro'
 
 
 @login_required()
@@ -12,8 +14,12 @@ url_listagem = '/listagem_cachorro'
 def cadastro_cachorro(request):
     form_cachorro = FormCachorro(request.POST or None)
 
-    context = {'forms': [form_cachorro], 'action': 'Registrar', 'model': 'Cachorro',
-               'url_listagem': url_listagem}
+    context = {'forms': [form_cachorro],
+               'form_action': 'Registrar',
+               'title_page': 'Registro',
+               'btn_action': 'Listagem',
+               'model': model,
+               'url': url_listagem}
 
     if form_cachorro.is_valid():
         form_cachorro.save()
@@ -25,7 +31,12 @@ def cadastro_cachorro(request):
 @login_required()
 def listagem_cachorro(request):
     cachorros = Cachorro.objects.all()
-    context = {'dados': cachorros}
+    context = {'dados': cachorros,
+               'title_page': 'Listagem',
+               'btn_action': 'Registrar',
+               'model': model,
+               'url': url_cadastro
+               }
     return render(request, 'core/cachorro/listagem_cachorro.html', context)
 
 
@@ -34,8 +45,12 @@ def atualiza_cachorro(request, cachorro_id):
     cachorro = Cachorro.objects.get(id=cachorro_id)
     form_cachorro = FormCachorro(request.POST or None, instance=cachorro)
 
-    context = {'forms': [form_cachorro], 'action': 'Atualizar', 'model': 'Cachorro',
-               'url_listagem': url_listagem}
+    context = {'forms': [form_cachorro],
+               'form_action': 'Atualizar',
+               'title_page': 'Atualização',
+               'btn_action': 'Listagem',
+               'model': model,
+               'url': url_listagem}
 
     if form_cachorro.is_valid():
         form_cachorro.save()

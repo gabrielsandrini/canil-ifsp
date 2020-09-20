@@ -5,12 +5,15 @@
     Página Inicial
 {% endblock %}
 
+{% block header %}
+{% endblock %}
+
 {% block main %}
     <div class="d-flex flex-wrap align-items-center">
         <a class="btn  btn-pagina-principal">
             <i class="fa fa-search" aria-hidden="true"></i> &nbsp Rastrear Cachorro
         </a>
-        <a class="btn btn-pagina-principal">
+        <a href="{% url 'url_cadastro_cachorro' %}" class="btn btn-pagina-principal">
             <i class="fa fa-plus" aria-hidden="true"></i> &nbsp Registrar Cachorro
         </a>
         <a class="btn btn-pagina-principal">

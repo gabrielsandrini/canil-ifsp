@@ -5,6 +5,8 @@ from core.forms import FormPessoa, FormVeterinario, UserCreateForm
 from core.models import Funcionario, Veterinario
 
 url_listagem = '/listagem_veterinario'
+url_cadastro = '/cadastro_veterinario'
+model = 'Veterinário'
 
 
 @login_required()
@@ -14,8 +16,12 @@ def cadastro_veterinario(request):
     form_credenciais = UserCreateForm(request.POST or None)
     form_veterinario = FormVeterinario(request.POST or None)
 
-    context = {'forms': [form_pessoa, form_credenciais, form_veterinario], 'action': 'Registrar',
-               'model': 'Veterinário', 'url_listagem': url_listagem}
+    context = {'forms': [form_pessoa, form_credenciais, form_veterinario],
+               'form_action': 'Registrar',
+               'title_page': 'Registro',
+               'btn_action': 'Listagem',
+               'model': model,
+               'url': url_listagem}
 
     if form_pessoa.is_valid() and form_credenciais.is_valid() and form_veterinario.is_valid():
 
@@ -36,5 +42,12 @@ def cadastro_veterinario(request):
 @login_required()
 def listagem_veterinario(request):
     veterinarios = Veterinario.objects.all()
-    context = {'dados': veterinarios}
+
+    context = {'dados': veterinarios,
+               'title_page': 'Listagem',
+               'btn_action': 'Registrar',
+               'model': model,
+               'url': url_cadastro
+               }
+
     return render(request, 'core/veterinario/listagem_veterinario.html', context)

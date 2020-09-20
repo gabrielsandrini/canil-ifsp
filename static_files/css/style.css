@@ -29,7 +29,7 @@ footer{
     min-height: 100vh;
 }
 
-.nav-item a{
+.nav-item a, .nav-item span{
     color: #EDF6F9;
     font-size: 1.2rem;
 }
@@ -68,12 +68,12 @@ h1{
     color: #006D77;
 }
 
-.btn-listagem, .btn-login, .btn-registrar{
+.btn-listagem-registrar, .btn-login{
     background-color: #E29578;
     color: #EDF6F9;
 }
 
-.btn-listagem:hover, .btn-login:hover, .btn-registrar:hover{
+.btn-listagem-registrar:hover, .btn-login:hover{
     background-color: #e29578d4;
     color: #EDF6F9;
 }

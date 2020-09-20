@@ -4,14 +4,20 @@ from core.forms import FormVacina
 from core.models import Vacina
 
 url_listagem = '/listagem_vacina'
+url_cadastro = '/cadastro_vacina'
+model = 'Vacina'
 
 
 @login_required()
 def cadastro_vacina(request):
     form_vacina = FormVacina(request.POST or None)
 
-    context = {'forms': [form_vacina], 'action': 'Registrar', 'model': 'Vacina',
-               'url_listagem': url_listagem}
+    context = {'forms': [form_vacina],
+               'form_action': 'Registrar',
+               'title_page': 'Registro',
+               'btn_action': 'Listagem',
+               'model': model,
+               'url': url_listagem}
 
     if form_vacina.is_valid():
         form_vacina.save()
@@ -23,6 +29,11 @@ def cadastro_vacina(request):
 @login_required()
 def listagem_vacina(request):
     vacinas = Vacina.objects.all()
-    context = {'dados': vacinas}
+    context = {'dados': vacinas,
+               'title_page': 'Listagem',
+               'btn_action': 'Registrar',
+               'model': model,
+               'url': url_cadastro
+               }
     return render(request, 'core/vacina/listagem_vacina.html', context)
 

@@ -3,7 +3,12 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %} - CÃOnil</title>
+    <title>
+        {% block title %}
+            {{ title_page }} {{ model }}
+        {% endblock %}
+        - CÃOnil
+    </title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -30,7 +35,7 @@
         </a>
         <ul class="navbar-nav ml-auto d-inline">
             <li class="nav-item">
-                <a class="nav-link">Bem vindo(a), {{ user.get_username }}</a>
+                <span>Bem vindo(a), {{ user.get_username }}</span>
             </li>
             <li class="nav-item">
                 <a href="{% url 'logout' %}" class="nav-link"><i class="fa fa-sign-out" aria-hidden="true"></i> Sair</a>
@@ -69,8 +74,20 @@
                 </div>
             </nav>
             <div class="col-md-10 col-sm-12">
-                {% block main %}
-                {% endblock %}
+                <div class="mt-3 mb-3">
+                    {% block header %}
+                        <div class=" row d-flex align-items-center justify-content-around">
+                            <div class="col-8">
+                                <h1>{{ title_page }} de {{ model }}</h1>
+                            </div>
+                            <div class="col-4">
+                                <a href="{{ url }}" class="btn btn-listagem-registrar float-right">{{ btn_action }} {{ model }}</a>
+                            </div>
+                        </div>
+                    {% endblock %}
+                    {% block main %}
+                    {% endblock %}
+                </div>
             </div>
         </div>
     </div>

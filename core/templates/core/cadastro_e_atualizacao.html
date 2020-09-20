@@ -2,43 +2,25 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
-    <!--
-        Action - REGISTRAR/ATUALIZAR
-        Model - Cachorro, Veterinário, Consulta, etc
-     -->
-{% block title %}
-    {{ action }} {{ model }}
-{% endblock %}
-
 {% block main %}
-    <div class="mt-3 mb-3">
-        <div class=" row d-flex align-items-center justify-content-around">
-            <div class="col-8">
-                <h1>{{ action }} {{ model }}</h1>
-            </div>
-            <div class="col-4">
-                <a href="{{ url_listagem }}" class="btn btn-listagem">Listagem {{ model }}</a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <form method="post">
-                    {% csrf_token %}
-                    {% for form in forms %}
-                        {{ form|crispy }}
-                        <hr/>
-                    {% endfor %}
-                    <div class="form-row d-flex justify-content-end">
-                        <button type="reset" class="btn btn-danger">
-                            Limpar Campos
-                        </button>
-                        &nbsp
-                        <button type="submit" class="btn btn-success">
-                            {{ action }} {{ model }}
-                        </button>
-                    </div>
-                </form>
-            </div>
+    <div class="row">
+        <div class="col-12">
+            <form method="post">
+                {% csrf_token %}
+                {% for form in forms %}
+                    {{ form|crispy }}
+                    <hr/>
+                {% endfor %}
+                <div class="form-row d-flex justify-content-end">
+                    <button type="reset" class="btn btn-danger">
+                        Limpar Campos
+                    </button>
+                    &nbsp
+                    <button type="submit" class="btn btn-success">
+                        {{ form_action}} {{ model }}
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 {% endblock %}
