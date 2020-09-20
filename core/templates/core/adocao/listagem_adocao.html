@@ -23,6 +23,7 @@
                         <tr>
                             <th>Guardião</th>
                             <th>Cachorro</th>
+                            <th>Data</th>
                             <th>Ações</th>
                         </tr>
                     </thead>
@@ -31,6 +32,7 @@
                             <tr>
                                 <td>{{ adocao.guardiao }}</td>
                                 <td>{{ adocao.cachorro }}</td>
+                                <td>{{ adocao.data }}</td>
                                 <td>
                                     <a href="{% url 'url_atualiza_adocao' adocao.id %}" class="btn btn-warning">Editar</a>
                                     <a href="#" class="btn btn-danger">Excluir</a>
