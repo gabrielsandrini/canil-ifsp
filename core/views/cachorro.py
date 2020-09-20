@@ -45,7 +45,7 @@ def atualiza_cachorro(request, cachorro_id):
 
 
 @login_required()
-def deleta_cachorro(request, cachorro_id):
+def deleta_cachorro(_, cachorro_id):
     cachorro = Cachorro.objects.get(id=cachorro_id)
     cachorro.delete()
     return redirect(url_listagem)

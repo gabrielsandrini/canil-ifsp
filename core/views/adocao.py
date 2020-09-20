@@ -42,3 +42,11 @@ def atualiza_adocao(request, adocao_id):
         return redirect(url_listagem)
 
     return render(request, 'core/cadastro_e_atualizacao.html', context)
+
+
+@login_required()
+def deleta_adocao(_, adocao_id):
+    adocao = Adocao.objects.get(id=adocao_id)
+    adocao.delete()
+    return redirect(url_listagem)
+
