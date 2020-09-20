@@ -42,3 +42,10 @@ def atualiza_cachorro(request, cachorro_id):
         return redirect(url_listagem)
 
     return render(request, 'core/cadastro_e_atualizacao.html', context)
+
+
+@login_required()
+def deleta_cachorro(request, cachorro_id):
+    cachorro = Cachorro.objects.get(id=cachorro_id)
+    cachorro.delete()
+    return redirect(url_listagem)
