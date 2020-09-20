@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Rastrear Cachorro
+{% endblock %}
+
+
+{% block header %}
+    <div class="row">
+        <div class="col">
+            <h1>Rastrear Cachorro</h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block main %}
+    <div class="row">
+        <div class="col-12">
+            <form method="post">
+                <div class="form-row">
+                    <input type="text" class="form-control col-9">
+                    &nbsp
+                    <input type="submit" value="Buscar" class="btn btn-listagem-registrar col-2">
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -64,3 +64,8 @@ def deleta_cachorro(_, cachorro_id):
     cachorro = Cachorro.objects.get(id=cachorro_id)
     cachorro.delete()
     return redirect(url_listagem)
+
+
+@login_required()
+def rastrear_cachorro(request):
+    return render(request, 'core/cachorro/rastreamento.html')

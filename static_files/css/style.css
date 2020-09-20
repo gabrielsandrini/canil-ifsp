@@ -68,9 +68,15 @@ h1{
     color: #006D77;
 }
 
-.btn-listagem-registrar, .btn-login{
+.btn-login{
     background-color: #E29578;
     color: #EDF6F9;
+}
+
+.btn-listagem-registrar{
+    background-color: #E29578;
+    color: #EDF6F9;
+    float: right;
 }
 
 .btn-listagem-registrar:hover, .btn-login:hover{
@@ -81,5 +87,11 @@ h1{
 @media(min-width: 992px){
     .navbar-toggle{
         display: none;
+    }
+}
+
+@media(max-width: 768px){
+    .btn-listagem-registrar{
+        float: none;
     }
 }

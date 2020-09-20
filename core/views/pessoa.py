@@ -40,3 +40,29 @@ def listagem_pessoa(request):
                }
 
     return render(request, 'core/pessoa/listagem_pessoa.html', context)
+
+
+@login_required()
+def atualiza_pessoa(request, pessoa_id):
+    pessoa = Pessoa.objects.get(id=pessoa_id)
+    form_pessoa = FormPessoa(request.POST or None, instance=pessoa)
+
+    context = {'forms': [form_pessoa],
+               'form_action': 'Atualizar',
+               'title_page': 'Atualização',
+               'btn_action': 'Listagem',
+               'model': model,
+               'url': url_listagem}
+
+    if form_pessoa.is_valid():
+        form_pessoa.save()
+        return redirect(url_listagem)
+
+    return render(request, 'core/cadastro_e_atualizacao.html', context)
+
+
+@login_required()
+def deleta_pessoa(_, pessoa_id):
+    pessoa = Pessoa.objects.get(id=pessoa_id)
+    pessoa.delete()
+    return redirect(url_listagem)
