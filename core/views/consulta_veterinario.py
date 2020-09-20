@@ -41,3 +41,28 @@ def listagem_consulta_veterinario(request):
 
     return render(request, 'core/consulta/listagem_consulta.html', context)
 
+
+@login_required()
+def atualiza_consulta_veterinario(request, consulta_id):
+    consulta = Consulta.objects.get(id=consulta_id)
+    form_consulta_veterinario = FormConsultaVeterinario(request.POST or None, instance=consulta)
+
+    context = {'forms': [form_consulta_veterinario],
+               'form_action': 'Atualizar',
+               'title_page': 'Atualização',
+               'btn_action': 'Listagem',
+               'model': model,
+               'url': url_listagem}
+
+    if form_consulta_veterinario.is_valid():
+        form_consulta_veterinario.save()
+        return redirect(url_listagem)
+
+    return render(request, 'core/cadastro_e_atualizacao.html', context)
+
+
+@login_required()
+def deleta_consulta_veterinario(_, consulta_id):
+    consulta = Consulta.objects.get(id=consulta_id)
+    consulta.delete()
+    return redirect(url_listagem)

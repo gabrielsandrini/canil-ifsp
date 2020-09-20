@@ -6,7 +6,8 @@ from core.views.veterinario import cadastro_veterinario, listagem_veterinario, a
 from core.views.cachorro import (cadastro_cachorro, listagem_cachorro, atualiza_cachorro, deleta_cachorro,
                                  rastrear_cachorro)
 from core.views.adocao import cadastro_adocao, listagem_adocao, atualiza_adocao, deleta_adocao
-from core.views.consulta_veterinario import cadastro_consulta_veterinario, listagem_consulta_veterinario
+from core.views.consulta_veterinario import (cadastro_consulta_veterinario, listagem_consulta_veterinario,
+                                             atualiza_consulta_veterinario, deleta_consulta_veterinario)
 from core.views.vacina import cadastro_vacina, listagem_vacina
 from core.views.vacinacao import cadastro_vacinacao, listagem_vacinacao
 
@@ -48,6 +49,8 @@ urlpatterns = [
     # Consulta
     path('cadastro_consulta/', cadastro_consulta_veterinario, name='url_cadastro_consulta'),
     path('listagem_consulta/', listagem_consulta_veterinario, name='url_listagem_consulta'),
+    path('atualiza_consulta/<int:consulta_id>', atualiza_consulta_veterinario, name='url_atualiza_consulta'),
+    path('deleta_consulta/<int:consulta_id>', deleta_consulta_veterinario, name='url_deleta_consulta'),
 
     # Vacina
     path('cadastro_vacina/', cadastro_vacina, name='url_cadastro_vacina'),

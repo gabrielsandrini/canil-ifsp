@@ -23,8 +23,10 @@
                             <td>{{ consulta.data }}</td>
                             <td>{{ consulta.observacoes }}</td>
                             <td>
-                                <a href="#" class="btn btn-warning">Editar</a>
-                                <a href="#" class="btn btn-danger">Excluir</a>
+                                <a href="{% url 'url_atualiza_consulta' consulta.id %}" class="btn btn-warning">Editar</a>
+                                <a href='#'
+                                   onclick='confirmarDelete("{{ consulta }}", "{% url 'url_deleta_consulta' consulta.id %}")'
+                                   class="btn btn-danger">Excluir</a>
                             </td>
                         </tr>
                     {% endfor %}
