@@ -1,7 +1,7 @@
 from django.urls import path
 from core.views.index import index
 from core.views.pessoa import cadastro_pessoa, listagem_pessoa, atualiza_pessoa, deleta_pessoa
-from core.views.funcionario import cadastro_funcionario, listagem_funcionario
+from core.views.funcionario import cadastro_funcionario, listagem_funcionario, atualiza_funcionario, deleta_funcionario
 from core.views.veterinario import cadastro_veterinario, listagem_veterinario
 from core.views.cachorro import (cadastro_cachorro, listagem_cachorro, atualiza_cachorro, deleta_cachorro,
                                  rastrear_cachorro)
@@ -23,6 +23,8 @@ urlpatterns = [
     # Funcionário
     path('cadastro_funcionario/', cadastro_funcionario, name='url_cadastro_funcionario'),
     path('listagem_funcionario/', listagem_funcionario, name='url_listagem_funcionario'),
+    path('atualiza_funcionario/<int:funcionario_id>', atualiza_funcionario, name='url_atualiza_funcionario'),
+    path('deleta_funcionario/<int:funcionario_id>', deleta_funcionario, name='url_deleta_funcionario'),
 
     # Veterinário
     path('cadastro_veterinario/', cadastro_veterinario, name='url_cadastro_veterinario'),
