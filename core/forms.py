@@ -3,6 +3,7 @@ from core.models import (Pessoa, Veterinario, Cachorro,
                          Consulta, Vacina, Vacinacao, Adocao)
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django.db.models import FilteredRelation, Q
 
 
 class UserCreateForm(UserCreationForm):
@@ -57,6 +58,9 @@ class FormVacinacao(ModelForm):
 
 
 class FormAdocao(ModelForm):
+    cachorros_adotados = Adocao.objects.all().only('cachorro_id')
+    cachorro = ModelChoiceField(queryset=Cachorro.objects.filter(adocao__isnull=True))
+
     class Meta:
         model = Adocao
         fields = '__all__'
