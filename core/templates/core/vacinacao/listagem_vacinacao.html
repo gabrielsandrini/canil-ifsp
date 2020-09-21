@@ -8,9 +8,8 @@
         <h1>{{ title_page }} de {{ model }}</h1>
     </div>
     <div class="col-6">
-        <a href="{% url 'url_cadastro_vacinacao' %}" class="btn btn-listagem-registrar">Registrar Aplicação</a>
-        <a href="{% url 'url_cadastro_vacina' %}" class="btn btn-listagem-registrar">Registrar Nova Vacina</a>
-        <a href="{% url 'url_listagem_vacina' %}" class="btn btn-listagem-registrar">Listagem de Vacinas</a>
+        <a href="{% url 'url_cadastro_vacinacao' %}" class="btn btn-listagem-registrar" style="margin-left: 10px">Registrar Aplicação</a>
+        <a href="{% url 'url_listagem_vacina' %}" class="btn btn-listagem-registrar">Gerenciar Vacinas</a>
     </div>
 </div>
 {% endblock %}

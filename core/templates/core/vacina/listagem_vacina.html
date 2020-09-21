@@ -2,6 +2,18 @@
 {% load static %}
 {% load crispy_forms_tags %}
 
+{% block header %}
+<div class=" row d-flex align-items-center justify-content-around">
+    <div class="col-6">
+        <h1>{{ title_page }} de {{ model }}</h1>
+    </div>
+    <div class="col-6">
+        <a href="{% url 'url_cadastro_vacina' %}" class="btn btn-listagem-registrar" style="margin-left: 10px">Registrar Vacina</a>
+        <a href="{% url 'url_listagem_vacinacao' %}" class="btn btn-listagem-registrar">Gerenciar Aplicações</a>
+    </div>
+</div>
+{% endblock %}
+
 {% block main %}
     <div class="row">
         <div class="col-12">
@@ -9,6 +21,7 @@
                 <thead>
                     <tr>
                         <th>Descrição</th>
+                        <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
