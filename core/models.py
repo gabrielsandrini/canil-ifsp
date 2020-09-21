@@ -74,7 +74,8 @@ class Adocao(models.Model):
 
 
 class Vacina(models.Model):
-    descricao = models.CharField(max_length=60, unique=True)
+    descricao = models.CharField(max_length=60)
+    deleted_at = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return self.descricao

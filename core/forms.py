@@ -1,4 +1,4 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, ChoiceField, ModelChoiceField
 from core.models import (Pessoa, Veterinario, Cachorro,
                          Consulta, Vacina, Vacinacao, Adocao)
 from django.contrib.auth.models import User
@@ -38,13 +38,16 @@ class FormConsultaVeterinario(ModelForm):
 class FormVacina(ModelForm):
     class Meta:
         model = Vacina
-        fields = '__all__'
+        fields = ('descricao', )
 
 
 class FormVacinacao(ModelForm):
+    vacina = ModelChoiceField(queryset=Vacina.objects.filter(deleted_at=None))
+
     class Meta:
         model = Vacinacao
         fields = '__all__'
+        # ('vacina', 'cachorro', 'data')
 
 
 class FormAdocao(ModelForm):

@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from core.forms import FormVacina
 from core.models import Vacina
+from datetime import date
 
 url_listagem = '/listagem_vacina'
 url_cadastro = '/cadastro_vacina'
@@ -28,7 +29,7 @@ def cadastro_vacina(request):
 
 @login_required()
 def listagem_vacina(request):
-    vacinas = Vacina.objects.all()
+    vacinas = Vacina.objects.filter(deleted_at=None)
     context = {'dados': vacinas,
                'title_page': 'Listagem',
                'btn_action': 'Registrar',
@@ -60,5 +61,6 @@ def atualiza_vacina(request, vacina_id):
 @login_required()
 def deleta_vacina(_, vacina_id):
     vacina = Vacina.objects.get(id=vacina_id)
-    vacina.delete()
+    vacina.deleted_at = date.today()
+    vacina.save()
     return redirect(url_listagem)

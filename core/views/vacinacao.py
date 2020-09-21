@@ -7,6 +7,7 @@ url_listagem = '/listagem_vacinacao'
 url_cadastro = '/cadastro_vacinacao'
 model = 'Vacinação'
 
+
 @login_required()
 def cadastro_vacinacao(request):
     form_vacinacao = FormVacinacao(request.POST or None)
@@ -17,7 +18,6 @@ def cadastro_vacinacao(request):
                'btn_action': 'Listagem',
                'model': model,
                'url': url_listagem}
-
 
     if form_vacinacao.is_valid():
         form_vacinacao.save()
