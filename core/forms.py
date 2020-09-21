@@ -24,6 +24,13 @@ class FormVeterinario(ModelForm):
 
 
 class FormCachorro(ModelForm):
+    PORTE_LIST = [
+        ('Pequeno', 'Pequeno'),
+        ('Médio', 'Médio'),
+        ('Grande', 'Grande')
+    ]
+    porte = ChoiceField(choices=PORTE_LIST)
+
     class Meta:
         model = Cachorro
         fields = '__all__'
@@ -47,7 +54,6 @@ class FormVacinacao(ModelForm):
     class Meta:
         model = Vacinacao
         fields = '__all__'
-        # ('vacina', 'cachorro', 'data')
 
 
 class FormAdocao(ModelForm):
