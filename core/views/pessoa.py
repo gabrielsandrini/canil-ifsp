@@ -2,7 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.db import transaction
 from core.forms import FormPessoa
-from core.models import Pessoa
+from core.models import Pessoa, Funcionario, Veterinario
 
 url_listagem = '/listagem_pessoa'
 url_cadastro = '/cadastro_pessoa'
@@ -62,7 +62,17 @@ def atualiza_pessoa(request, pessoa_id):
 
 
 @login_required()
+@transaction.atomic()
 def deleta_pessoa(_, pessoa_id):
     pessoa = Pessoa.objects.get(id=pessoa_id)
+
+    funcionario = Funcionario.objects.filter(pessoa_id=pessoa.id)
+    veterinario = Veterinario.objects.filter(pessoa_id=pessoa.id)
+
+    if funcionario:
+        funcionario[0].credenciais.delete()
+    elif veterinario:
+        veterinario[0].credenciais.delete()
+
     pessoa.delete()
     return redirect(url_listagem)
