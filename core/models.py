@@ -97,22 +97,11 @@ class Vacinacao(models.Model):
         verbose_name_plural = 'Vacinacoes'
 
 
-class Medicacao(models.Model):
-    nome_medicamento = models.CharField(max_length=100)
-    posologia = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.nome_medicamento + ' - ' + self.posologia
-
-    class Meta:
-        verbose_name_plural = 'Medicacoes'
-
-
 class Consulta(models.Model):
     veterinario = models.ForeignKey(Veterinario, on_delete=models.SET_NULL, null=True)
     cachorro = models.ForeignKey(Cachorro, on_delete=models.CASCADE)
     data = models.DateField()
-    medicacao = models.ManyToManyField(Medicacao, blank=True)
+    medicacao = models.TextField(null=True, blank=True)
     observacoes = models.TextField(blank=True, null=True)
 
     def __str__(self):

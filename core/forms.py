@@ -1,9 +1,8 @@
-from django.forms import ModelForm, ChoiceField, ModelChoiceField
+from django.forms import ModelForm, ChoiceField, ModelChoiceField, MultiValueField
 from core.models import (Pessoa, Veterinario, Cachorro,
                          Consulta, Vacina, Vacinacao, Adocao)
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from django.db.models import FilteredRelation, Q
 
 
 class UserCreateForm(UserCreationForm):
@@ -38,6 +37,7 @@ class FormCachorro(ModelForm):
 
 
 class FormConsultaVeterinario(ModelForm):
+
     class Meta:
         model = Consulta
         fields = '__all__'
