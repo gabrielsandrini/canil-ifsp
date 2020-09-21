@@ -39,3 +39,28 @@ def listagem_vacinacao(request):
 
     return render(request, 'core/vacinacao/listagem_vacinacao.html', context)
 
+
+@login_required()
+def atualiza_vacinacao(request, vacinacao_id):
+    vacinacao = Vacinacao.objects.get(id=vacinacao_id)
+    form_vacinacao = FormVacinacao(request.POST or None, instance=vacinacao)
+
+    context = {'forms': [form_vacinacao],
+               'form_action': 'Atualizar',
+               'title_page': 'Atualização',
+               'btn_action': 'Listagem',
+               'model': model,
+               'url': url_listagem}
+
+    if form_vacinacao.is_valid():
+        form_vacinacao.save()
+        return redirect(url_listagem)
+
+    return render(request, 'core/cadastro_e_atualizacao.html', context)
+
+
+@login_required()
+def deleta_vacinacao(_, vacinacao_id):
+    vacinacao = Vacinacao.objects.get(id=vacinacao_id)
+    vacinacao.delete()
+    return redirect(url_listagem)

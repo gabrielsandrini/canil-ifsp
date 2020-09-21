@@ -34,8 +34,10 @@
                             <td>{{ vacinacao.vacina }}</td>
                             <td>{{ vacinacao.data }}</td>
                             <td>
-                                <a href="#" class="btn btn-warning">Editar</a>
-                                <a href="#" class="btn btn-danger">Excluir</a>
+                                <a href="{% url 'url_atualiza_vacinacao' vacinacao.id %}" class="btn btn-warning">Editar</a>
+                                <a href='#'
+                                   onclick='confirmarDelete("{{ vacinacao }}", "{% url 'url_deleta_vacinacao' vacinacao.id %}")'
+                                   class="btn btn-danger">Excluir</a>
                             </td>
                         </tr>
                     {% endfor %}

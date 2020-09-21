@@ -8,8 +8,8 @@ from core.views.cachorro import (cadastro_cachorro, listagem_cachorro, atualiza_
 from core.views.adocao import cadastro_adocao, listagem_adocao, atualiza_adocao, deleta_adocao
 from core.views.consulta_veterinario import (cadastro_consulta_veterinario, listagem_consulta_veterinario,
                                              atualiza_consulta_veterinario, deleta_consulta_veterinario)
-from core.views.vacina import cadastro_vacina, listagem_vacina
-from core.views.vacinacao import cadastro_vacinacao, listagem_vacinacao
+from core.views.vacina import cadastro_vacina, listagem_vacina, atualiza_vacina, deleta_vacina
+from core.views.vacinacao import cadastro_vacinacao, listagem_vacinacao, atualiza_vacinacao, deleta_vacinacao
 
 urlpatterns = [
     # Home/Index
@@ -55,8 +55,12 @@ urlpatterns = [
     # Vacina
     path('cadastro_vacina/', cadastro_vacina, name='url_cadastro_vacina'),
     path('listagem_vacina/', listagem_vacina, name='url_listagem_vacina'),
+    path('atualiza_vacina/<int:vacina_id>', atualiza_vacina, name='url_atualiza_vacina'),
+    path('deleta_vacina/<int:vacina_id>', deleta_vacina, name='url_deleta_vacina'),
 
     # Vacinacao
     path('cadastro_vacinacao/', cadastro_vacinacao, name='url_cadastro_vacinacao'),
     path('listagem_vacinacao/', listagem_vacinacao, name='url_listagem_vacinacao'),
+    path('atualiza_vacinacao/<int:vacinacao_id>', atualiza_vacinacao, name='url_atualiza_vacinacao'),
+    path('deleta_vacinacao/<int:vacinacao_id>', deleta_vacinacao, name='url_deleta_vacinacao'),
 ]
