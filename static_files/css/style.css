@@ -84,6 +84,17 @@ h1{
     color: #EDF6F9;
 }
 
+.btn-listagem-buscar{
+    background-color: #04C859;
+    color: #EDF6F9;
+}
+
+.btn-listagem-buscar:hover{
+    background-color: #04d75f;
+    color: #EDF6F9;
+    transition: background-color 0.2s;
+}
+
 @media(min-width: 992px){
     .navbar-toggle{
         display: none;

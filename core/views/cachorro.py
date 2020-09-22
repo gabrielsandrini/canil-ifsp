@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.db import transaction
 from core.forms import FormCachorro
 from core.models import Cachorro
+from django.db.models import Q
 
 url_listagem = '/listagem_cachorro'
 url_cadastro = '/cadastro_cachorro'
@@ -30,12 +31,25 @@ def cadastro_cachorro(request):
 
 @login_required()
 def listagem_cachorro(request):
-    cachorros = Cachorro.objects.all()
+    search = request.GET.get('search', '')
+    adotado = bool(request.GET.get('adotado', ''))
+
+    cachorros = Cachorro.objects.filter(Q(nome__icontains=search) |
+                                        Q(raca__icontains=search) |
+                                        Q(cor__icontains=search) |
+                                        Q(porte__icontains=search) |
+                                        Q(pedigree__icontains=search) |
+                                        Q(caracteristicas_extras__icontains=search),
+                                        adocao__isnull=(not adotado)
+                                        )
+
     context = {'dados': cachorros,
                'title_page': 'Listagem',
                'btn_action': 'Registrar',
                'model': model,
-               'url': url_cadastro
+               'url': url_cadastro,
+               'boolean_search_fields': [('Já foi adotado', 'adotado', adotado)],
+               'search': search
                }
     return render(request, 'core/cachorro/listagem_cachorro.html', context)
 
@@ -65,7 +79,3 @@ def deleta_cachorro(_, cachorro_id):
     cachorro.delete()
     return redirect(url_listagem)
 
-
-@login_required()
-def rastrear_cachorro(request):
-    return render(request, 'core/cachorro/rastreamento.html')

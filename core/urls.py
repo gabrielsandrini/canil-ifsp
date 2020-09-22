@@ -3,8 +3,7 @@ from core.views.index import index
 from core.views.pessoa import cadastro_pessoa, listagem_pessoa, atualiza_pessoa, deleta_pessoa
 from core.views.funcionario import cadastro_funcionario, listagem_funcionario, atualiza_funcionario, deleta_funcionario
 from core.views.veterinario import cadastro_veterinario, listagem_veterinario, atualiza_veterinario, deleta_veterinario
-from core.views.cachorro import (cadastro_cachorro, listagem_cachorro, atualiza_cachorro, deleta_cachorro,
-                                 rastrear_cachorro)
+from core.views.cachorro import (cadastro_cachorro, listagem_cachorro, atualiza_cachorro, deleta_cachorro)
 from core.views.adocao import cadastro_adocao, listagem_adocao, atualiza_adocao, deleta_adocao
 from core.views.consulta_veterinario import (cadastro_consulta_veterinario, listagem_consulta_veterinario,
                                              atualiza_consulta_veterinario, deleta_consulta_veterinario)
@@ -38,7 +37,6 @@ urlpatterns = [
     path('listagem_cachorro/', listagem_cachorro, name='url_listagem_cachorro'),
     path('atualiza_cachorro/<int:cachorro_id>', atualiza_cachorro, name='url_atualiza_cachorro'),
     path('deleta_cachorro/<int:cachorro_id>', deleta_cachorro, name='url_deleta_cachorro'),
-    path('rastreamento/', rastrear_cachorro, name='url_rastrear_cachorro'),
 
     # Adoção
     path('cadastro_adocao/', cadastro_adocao, name='url_cadastro_adocao'),
