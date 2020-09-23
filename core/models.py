@@ -51,6 +51,7 @@ class Cachorro(models.Model):
     data_nascimento = models.DateField(blank=True, null=True)
     pedigree = models.CharField(max_length=45, unique=True, blank=True, null=True)
     caracteristicas_extras = models.TextField(blank=True, null=True)
+    foto = models.ImageField(upload_to='fotos_cachorros', blank=True, null=True)
 
     def __str__(self):
         raca = self.raca + ' 'if self.raca else ''
