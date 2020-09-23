@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.db import transaction
 from core.forms import FormConsultaVeterinario
 from core.models import Consulta
+from django.db.models import Q
 
 url_listagem = '/listagem_consulta'
 url_cadastro = '/cadastro_consulta'
@@ -30,13 +31,20 @@ def cadastro_consulta_veterinario(request):
 
 @login_required()
 def listagem_consulta_veterinario(request):
-    consultas = Consulta.objects.all()
+    search = request.GET.get('search', '')
+
+    consultas = Consulta.objects.filter(Q(veterinario__crmv__icontains=search) |
+                                        Q(veterinario__pessoa__nome__icontains=search) |
+                                        Q(veterinario__pessoa__cpf__icontains=search) |
+                                        Q(cachorro__nome__icontains=search)
+                                        )
 
     context = {'dados': consultas,
                'title_page': 'Listagem',
                'btn_action': 'Registrar',
                'model': model,
-               'url': url_cadastro
+               'url': url_cadastro,
+               'search': search
                }
 
     return render(request, 'core/consulta/listagem_consulta.html', context)
