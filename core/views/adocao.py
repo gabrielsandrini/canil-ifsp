@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.db import transaction
 from core.models import Adocao
 from core.forms import FormAdocao
+from django.db.models import Q
 
 url_listagem = '/listagem_adocao'
 url_cadastro = '/cadastro_adocao'
@@ -30,13 +31,18 @@ def cadastro_adocao(request):
 
 @login_required()
 def listagem_adocao(request):
-    adocoes = Adocao.objects.all()
+    search = request.GET.get('search', '')
+
+    adocoes = Adocao.objects.filter(Q(cachorro__nome__icontains=search) |
+                                    Q(guardiao__nome__contains=search) |
+                                    Q(guardiao__cpf__icontains=search))
 
     context = {'dados': adocoes,
                'title_page': 'Listagem',
                'btn_action': 'Registrar',
                'model': model,
-               'url': url_cadastro
+               'url': url_cadastro,
+               'search': search
                }
 
     return render(request, 'core/adocao/listagem_adocao.html', context)
