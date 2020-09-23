@@ -12,6 +12,7 @@ boolean_search_fields: campos de checkbox, no formato [(label ,name, boolean), (
                     value="{{ search }}"
                     class="form-control col-9"
                     placeholder="Buscar ..."
+                    onchange='document.getElementById("search_bar_form").submit()'
             >
             <input
                     type="submit"
