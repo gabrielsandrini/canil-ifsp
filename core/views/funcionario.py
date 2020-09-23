@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.db import transaction
 from core.forms import FormPessoa, UserCreateForm
 from core.models import Funcionario
+from django.db.models import Q
 
 url_listagem = '/listagem_funcionario'
 url_cadastro = '/cadastro_funcionario'
@@ -34,13 +35,17 @@ def cadastro_funcionario(request):
 
 @login_required()
 def listagem_funcionario(request):
-    funcionarios = Funcionario.objects.all()
+    search = request.GET.get('search', '')
+
+    funcionarios = Funcionario.objects.filter(Q(pessoa__nome__icontains=search) |
+                                              Q(pessoa__cpf__icontains=search))
 
     context = {'dados': funcionarios,
                'title_page': 'Listagem',
                'btn_action': 'Registrar',
                'model': model,
-               'url': url_cadastro
+               'url': url_cadastro,
+               'search': search
                }
 
     return render(request, 'core/funcionario/listagem_funcionario.html', context)
