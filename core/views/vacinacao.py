@@ -2,6 +2,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from core.forms import FormVacinacao
 from core.models import Vacinacao
+from django.db.models import Q
 
 url_listagem = '/listagem_vacinacao'
 url_cadastro = '/cadastro_vacinacao'
@@ -28,13 +29,17 @@ def cadastro_vacinacao(request):
 
 @login_required()
 def listagem_vacinacao(request):
-    vacinacoes = Vacinacao.objects.all()
+    search = request.GET.get('search', '')
+
+    vacinacoes = Vacinacao.objects.filter(Q(cachorro__nome__icontains=search) |
+                                          Q(vacina__descricao__icontains=search))
 
     context = {'dados': vacinacoes,
                'title_page': 'Listagem',
                'btn_action': 'Registrar',
                'model': model,
-               'url': url_cadastro
+               'url': url_cadastro,
+               'search': search
                }
 
     return render(request, 'core/vacinacao/listagem_vacinacao.html', context)
