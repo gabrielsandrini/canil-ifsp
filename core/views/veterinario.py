@@ -2,7 +2,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.db import transaction
 from core.forms import FormPessoa, FormVeterinario, UserCreateForm
-from core.models import Funcionario, Veterinario
+from core.models import Veterinario
+from django.db.models import Q
 
 url_listagem = '/listagem_veterinario'
 url_cadastro = '/cadastro_veterinario'
@@ -41,13 +42,18 @@ def cadastro_veterinario(request):
 
 @login_required()
 def listagem_veterinario(request):
-    veterinarios = Veterinario.objects.all()
+    search = request.GET.get('search', '')
+
+    veterinarios = Veterinario.objects.filter(Q(pessoa__nome__icontains=search) |
+                                              Q(pessoa__cpf__icontains=search) |
+                                              Q(crmv__icontains=search))
 
     context = {'dados': veterinarios,
                'title_page': 'Listagem',
                'btn_action': 'Registrar',
                'model': model,
-               'url': url_cadastro
+               'url': url_cadastro,
+               'search': search
                }
 
     return render(request, 'core/veterinario/listagem_veterinario.html', context)
