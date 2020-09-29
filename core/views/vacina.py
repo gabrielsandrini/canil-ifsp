@@ -29,12 +29,18 @@ def cadastro_vacina(request):
 
 @login_required()
 def listagem_vacina(request):
-    vacinas = Vacina.objects.filter(deleted_at=None)
+    search = request.GET.get('search', '')
+    is_deletada = bool(request.GET.get('deletadas', ''))
+
+    vacinas = Vacina.objects.filter(deleted_at__isnull=not is_deletada,
+                                    descricao__icontains=search)
     context = {'dados': vacinas,
                'title_page': 'Listagem',
                'btn_action': 'Registrar',
                'model': model,
-               'url': url_cadastro
+               'url': url_cadastro,
+               'boolean_search_fields': [('Deletadas', 'deletadas', is_deletada)],
+               'search': search
                }
     return render(request, 'core/vacina/listagem_vacina.html', context)
 
