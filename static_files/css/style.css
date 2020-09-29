@@ -68,7 +68,7 @@ h1{
     color: #006D77;
 }
 
-.btn-login, .btn-adotar{
+.btn-login{
     background-color: #E29578;
     color: #EDF6F9;
 }
@@ -77,11 +77,6 @@ h1{
     background-color: #E29578;
     color: #EDF6F9;
     float: right;
-}
-
-.card{
-    background-color: #FFDDD2;
-
 }
 
 .btn-listagem-registrar:hover, .btn-login:hover{

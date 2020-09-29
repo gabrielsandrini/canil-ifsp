@@ -13,7 +13,7 @@ model = 'Cachorro'
 @login_required()
 @transaction.atomic()
 def cadastro_cachorro(request):
-    form_cachorro = FormCachorro(request.POST or None, request.FILES or None)
+    form_cachorro = FormCachorro(request.POST or None)
 
     context = {'forms': [form_cachorro],
                'form_action': 'Registrar',

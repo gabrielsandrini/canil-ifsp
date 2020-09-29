@@ -1,7 +1,5 @@
 from django.urls import path
 from core.views.index import index
-from django.conf.urls.static import static
-from django.conf import settings
 from core.views.pessoa import cadastro_pessoa, listagem_pessoa, atualiza_pessoa, deleta_pessoa
 from core.views.funcionario import cadastro_funcionario, listagem_funcionario, atualiza_funcionario, deleta_funcionario
 from core.views.veterinario import cadastro_veterinario, listagem_veterinario, atualiza_veterinario, deleta_veterinario
@@ -64,5 +62,3 @@ urlpatterns = [
     path('atualiza_vacinacao/<int:vacinacao_id>', atualiza_vacinacao, name='url_atualiza_vacinacao'),
     path('deleta_vacinacao/<int:vacinacao_id>', deleta_vacinacao, name='url_deleta_vacinacao'),
 ]
-
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
